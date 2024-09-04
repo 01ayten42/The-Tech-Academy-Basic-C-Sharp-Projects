@@ -1,0 +1,76 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Display the welcome message to the user
+        Console.WriteLine("Welcome to Package Express. Please follow the instructions below.");
+
+        // Prompt user for package weight
+        Console.Write("Please enter the package weight:\n");
+        double weight;
+        if (!double.TryParse(Console.ReadLine(), out weight))
+        {
+            // Handle invalid input
+            Console.WriteLine("Invalid input. Please enter a numeric value for weight.");
+            return;  // Exit the program
+        }
+
+        // Check if the weight is too heavy
+        if (weight > 50)
+        {
+            Console.WriteLine("Package too heavy to be shipped via Package Express. Have a good day.");
+            return;  // Exit the program
+        }
+
+        // Prompt user for package dimensions: width, height, and length
+        Console.Write("Please enter the package width:\n");
+        double width;
+        if (!double.TryParse(Console.ReadLine(), out width))
+        {
+            // Handle invalid input
+            Console.WriteLine("Invalid input. Please enter a numeric value for width.");
+            return;  // Exit the program
+        }
+
+        Console.Write("Please enter the package height:\n");
+        double height;
+        if (!double.TryParse(Console.ReadLine(), out height))
+        {
+            // Handle invalid input
+            Console.WriteLine("Invalid input. Please enter a numeric value for height.");
+            return;  // Exit the program
+        }
+
+        Console.Write("Please enter the package length:\n");
+        double length;
+        if (!double.TryParse(Console.ReadLine(), out length))
+        {
+            // Handle invalid input
+            Console.WriteLine("Invalid input. Please enter a numeric value for length.");
+            return;  // Exit the program
+        }
+
+        // Check if the total dimensions exceed the limit
+        if ((width + height + length) > 50)
+        {
+            Console.WriteLine("Package too big to be shipped via Package Express.");
+            return;  // Exit the program
+        }
+
+        // Calculate the shipping quote
+        // Multiply width, height, and length to get the volume
+        double volume = width * height * length;
+
+        // Multiply volume by weight
+        double volumeWeight = volume * weight;
+
+        // Divide the result by 100 to get the quote
+        double quote = volumeWeight / 100;
+
+        // Display the quote formatted as a dollar amount
+        Console.WriteLine($"Your estimated total for shipping this package is: ${quote:F2}");
+        Console.WriteLine("Thank you!");  // End the interaction with a thank you message
+    }
+}
